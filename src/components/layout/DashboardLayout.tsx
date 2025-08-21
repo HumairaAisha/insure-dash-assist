@@ -21,9 +21,9 @@ interface DashboardLayoutProps {
 
 const navigation = [
   { name: 'Dashboard', href: '/', icon: LayoutDashboard },
-  { name: 'Claims', href: '/claims', icon: FileText },
+  /* { name: 'Claims', href: '/claims', icon: FileText },
   { name: 'Analytics', href: '/analytics', icon: BarChart3 },
-  { name: 'Users', href: '/users', icon: Users },
+  { name: 'Users', href: '/users', icon: Users }, */
 ];
 
 export default function DashboardLayout({ children }: DashboardLayoutProps) {

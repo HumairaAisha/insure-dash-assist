@@ -59,16 +59,16 @@ export default function Dashboard() {
         <div className="bg-gradient-to-r from-trust-blue-600 to-trust-blue-800 rounded-2xl p-8 text-white">
           <div className="flex items-center justify-between">
             <div>
-              <h1 className="text-3xl font-bold mb-2">Welcome back, Administrator</h1>
+              <h1 className="text-3xl font-bold mb-2">Welcome Back</h1>
               <p className="text-blue-100 text-lg">
                 Here's what's happening with your claims today
               </p>
             </div>
             <div className="hidden md:flex items-center space-x-4">
-              <div className="text-right">
+              {/* <div className="text-right">
                 <p className="text-sm text-blue-200">Today's Date</p>
                 <p className="text-xl font-semibold">January 20, 2024</p>
-              </div>
+              </div> */}
               <Shield className="w-12 h-12 text-blue-200" />
             </div>
           </div>
@@ -99,7 +99,7 @@ export default function Dashboard() {
               <div className="flex items-center justify-between mb-6">
                 <div>
                   <h3 className="text-lg font-semibold text-foreground">Claims by Location</h3>
-                  <p className="text-sm text-muted-foreground">Interactive fraud risk heatmap</p>
+                  <p className="text-sm text-muted-foreground">Interactive fraud risk</p>
                 </div>
                 <Button variant="outline" size="sm">
                   <MapPin className="w-4 h-4 mr-2" />
@@ -125,7 +125,7 @@ export default function Dashboard() {
 
           {/* Quick Actions */}
           <div className="space-y-6">
-            <div className="bg-white rounded-xl shadow-md border border-card-border p-6">
+            {/* <div className="bg-white rounded-xl shadow-md border border-card-border p-6">
               <h3 className="text-lg font-semibold text-foreground mb-4">Quick Actions</h3>
               <div className="space-y-3">
                 <Button className="w-full justify-start button-primary">
@@ -145,10 +145,10 @@ export default function Dashboard() {
                   View Analytics
                 </Button>
               </div>
-            </div>
+            </div> */}
 
             {/* Recent Activity */}
-            <div className="bg-white rounded-xl shadow-md border border-card-border p-6">
+            {/* <div className="bg-white rounded-xl shadow-md border border-card-border p-6">
               <h3 className="text-lg font-semibold text-foreground mb-4">Recent Activity</h3>
               <div className="space-y-4">
                 <div className="flex items-center space-x-3">
@@ -173,7 +173,7 @@ export default function Dashboard() {
                   </div>
                 </div>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
 
