@@ -7,7 +7,7 @@
 @layer base {
   :root {
     /* Core Brand Colors - Insurance Theme */
-    --background: 248 250 252%; /* Soft gray-blue background */
+    --background: 220 15% 97%; /* Professional white-gray background */
     --foreground: 210 24% 16%; /* Dark blue-gray text */
 
     /* Trust Blue - Primary brand color */
@@ -169,7 +169,7 @@
 
   /* Status Badges */
   .status-pending {
-    @apply bg-yellow-100 text-yellow-800 border border-yellow-200;
+    @apply bg-alert-orange-bg text-alert-orange border border-alert-orange-light/20;
   }
 
   .status-approved {
@@ -190,7 +190,7 @@
   }
 
   .fraud-medium {
-    @apply text-yellow-600 bg-yellow-50 border-yellow-200;
+    @apply text-alert-orange bg-alert-orange-bg border-alert-orange-light/20;
   }
 
   .fraud-high {
