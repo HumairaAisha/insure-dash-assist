@@ -39,7 +39,7 @@ const mockClaims: Claim[] = [
     channel: "WhatsApp",
     fraudScore: 15,
     status: "pending",
-    amount: "$2,500",
+    amount: "N2,500",
     date: "2024-01-20",
     location: "Lagos, Nigeria", 
     claimType: "Vehicle Accident"
@@ -50,7 +50,7 @@ const mockClaims: Claim[] = [
     channel: "SMS",
     fraudScore: 85,
     status: "flagged",
-    amount: "$15,000",
+    amount: "N15,000",
     date: "2024-01-20",
     location: "Abuja, Nigeria",
     claimType: "Property Damage"
@@ -61,7 +61,7 @@ const mockClaims: Claim[] = [
     channel: "USSD",
     fraudScore: 25,
     status: "approved",
-    amount: "$1,200",
+    amount: "N1,200",
     date: "2024-01-19",
     location: "Port Harcourt, Nigeria",
     claimType: "Medical"
@@ -72,7 +72,7 @@ const mockClaims: Claim[] = [
     channel: "WhatsApp", 
     fraudScore: 65,
     status: "processing",
-    amount: "$5,800",
+    amount: "N5,800",
     date: "2024-01-19",
     location: "Kano, Nigeria",
     claimType: "Theft"
@@ -83,7 +83,7 @@ const mockClaims: Claim[] = [
     channel: "SMS",
     fraudScore: 10,
     status: "pending",
-    amount: "$3,200",
+    amount: "N3,200",
     date: "2024-01-18",
     location: "Ibadan, Nigeria",
     claimType: "Vehicle Damage"
@@ -119,7 +119,59 @@ export default function ClaimsTable() {
   const [selectedClaim, setSelectedClaim] = useState<Claim | null>(null);
   const { toast } = useToast();
 
-  const handleApprove = (claim: Claim) => {
+    const sendSMS = async (claim: Claim, action: "approved" | "rejected") => {
+    try {
+      const response = await fetch("http://localhost:8080/api/send-sms", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          phoneNumber: "+2348032871736", // Sandbox test number
+          message: `Dear ${claim.customerName}, your claim ${claim.id} has been ${action}.`
+        })
+      });
+
+      const result = await response.json();
+
+      if (result.SMSMessageData) {
+        toast({
+          title: "SMS Sent",
+          description: `Notification sent to ${claim.customerName}`
+        });
+      } else {
+        toast({
+          title: "Failed to send SMS",
+          description: result.error || "Something went wrong",
+          variant: "destructive"
+        });
+      }
+    } catch (err) {
+      toast({
+        title: "Error",
+        description: "Could not send SMS",
+        variant: "destructive"
+      });
+    }
+  };
+
+    const handleApprove = (claim: Claim) => {
+    toast({
+      title: "Claim Approved",
+      description: `${claim.id} has been approved successfully.`,
+    });
+    sendSMS(claim, "approved");
+  };
+
+  const handleReject = (claim: Claim) => {
+    toast({
+      title: "Claim Rejected", 
+      description: `${claim.id} has been rejected and flagged for review.`,
+      variant: "destructive"
+    });
+    sendSMS(claim, "rejected");
+  };
+
+
+  /* const handleApprove = (claim: Claim) => {
     toast({
       title: "Claim Approved",
       description: `${claim.id} has been approved successfully.`,
@@ -132,7 +184,7 @@ export default function ClaimsTable() {
       description: `${claim.id} has been rejected and flagged for review.`,
       variant: "destructive"
     });
-  };
+  }; */
 
   return (
     <div className="professional-table">
